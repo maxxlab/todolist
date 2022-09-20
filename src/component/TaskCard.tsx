@@ -6,8 +6,10 @@ import StarBorderIcon from '@mui/icons-material/StarBorder';
 import StarIcon from '@mui/icons-material/Star';
 import Checkbox from '@mui/material/Checkbox';
 import Box from '@mui/material/Box';
+import { Button } from '@mui/material';
 
 export default function TaskCard() {
+  
   return (
     <>
       <Card sx={{ minWidth: 275, margin: 2 }}>
@@ -16,11 +18,14 @@ export default function TaskCard() {
             List
           </Typography>
           <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-            <Typography variant="h6" component="div">
+            <Typography variant="h6" component="div" >
               <Checkbox />Task Name
-              
+              {/* sx={{textDecoration: 'line-through'}} */}
             </Typography>
-            <StarBorderIcon color="primary" />
+            <Button>
+              <StarBorderIcon color="primary" />
+            </Button>
+
           </Box>
 
           <Typography sx={{ textAlign: 'right' }}>
