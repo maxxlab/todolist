@@ -50,7 +50,7 @@ export default function LongMenu() {
         }}
       >
         {options.map((option) => (
-          <MenuItem key={option} selected={option === 'About'} onClick={handleClose}>
+          <MenuItem key={option} onClick={handleClose}>
             {option}
           </MenuItem>
         ))}
