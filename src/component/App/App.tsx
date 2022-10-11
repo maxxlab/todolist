@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-import { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
 import Header from '../Header/Header';
 import Navbar from '../Navbar/Navbar';
 

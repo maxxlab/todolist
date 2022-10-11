@@ -9,7 +9,10 @@ export const listItem = (
             <ListItemText primary="Tasks" />
         </ListItemButton>
         <ListItemButton>
-            <ListItemText primary="Text" />
+            <ListItemText primary="Text1" />
+        </ListItemButton>
+        <ListItemButton>
+            <ListItemText primary="Text2" />
         </ListItemButton>
     </>
 )
