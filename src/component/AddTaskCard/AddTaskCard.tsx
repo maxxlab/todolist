@@ -6,15 +6,20 @@ import TextField from '@mui/material/TextField';
 
 export default function TaskCard() {
   return (
-    <>
-      <Card sx={{ minWidth: 275, margin: 2 }}>
-      <CardContent>
-        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-          List
-        </Typography>
-        <TextField id="standard-basic" variant="standard" />
-      </CardContent>
-    </Card>
-    </>
+    <div style={{ 
+      width: "100%",
+      minWidth: 50, 
+      margin: 20,
+      position: "inherit"
+    }}>
+      <Card sx={{}}>
+        <CardContent>
+          <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+            List
+          </Typography>
+          <TextField id="standard-basic" variant="standard" />
+        </CardContent>
+      </Card>
+    </div>
   );
 }

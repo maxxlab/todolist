@@ -11,8 +11,13 @@ import { Button } from '@mui/material';
 export default function TaskCard() {
   
   return (
-    <>
-      <Card sx={{ minWidth: 275, margin: 2 }}>
+    <div style={{ 
+      width: "100%",
+      minWidth: 50, 
+      margin: 20,
+      position: "inherit"
+    }}>
+      <Card>
         <CardContent>
           <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
             List
@@ -33,6 +38,6 @@ export default function TaskCard() {
           </Typography>
         </CardContent>
       </Card>
-    </>
+    </div>
   );
 }
