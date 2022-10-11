@@ -3,9 +3,9 @@ import MuiDrawer from '@mui/material/Drawer';
 import {Box, Toolbar} from '@mui/material';
 import List from '@mui/material/List';
 import Main from '../Main/Main';
-import { listItem } from '../List_Item/List_Item';
+import ListItem from '../List_Item/List_Item';
 import Divider from '@mui/material/Divider';
-import {CreateNewNote} from '../CreateNewNote/CreateNewNote'
+import CreateNewNote from '../CreateNewNote/CreateNewNote'
 const drawerWidth: number = 240;
 
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
@@ -37,25 +37,25 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
     return(
       <>
         <Box sx={{ display: 'flex' }}>
-            <Drawer variant="permanent" open={openNavbar}>
-                <Toolbar
-                    sx={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'flex-end',
+          <Drawer variant="permanent" open={openNavbar}>
+            <Toolbar
+              sx={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'flex-end',
 
-                    }}
-                >
-                </Toolbar>
-                <List component="nav" sx={{ 
+              }}
+            >
+            </Toolbar>
+            <List component="nav" sx={{ 
               ...(!openNavbar && { display: 'none' })
             }}>
-                    {listItem}
-                    <Divider sx={{ my: 1 }} />
-                    {CreateNewNote}
-                </List>
-            </Drawer>
-        <Main/>
+              <ListItem></ListItem>
+              <Divider sx={{ my: 1 }} />
+              <CreateNewNote></CreateNewNote>
+            </List>
+          </Drawer>
+          <Main/>
       </Box>
     </>
     );
