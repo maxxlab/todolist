@@ -1,6 +1,6 @@
 import React from 'react';
-import TaskCard from './component/TaskCard';
-import AddTaskCard from './component/AddTaskCard';
+import TaskCard from '../TaskCard/TaskCard';
+import AddTaskCard from '../AddTaskCard/AddTaskCard';
 
 
 export default function Main() {
