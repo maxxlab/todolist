@@ -3,7 +3,6 @@ import Checkbox from '@mui/material/Checkbox';
 import { Button } from '@mui/material';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import Box from '@mui/material/Box';
-
 interface title{
     taskTitle:string;
 }

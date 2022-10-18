@@ -4,14 +4,33 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 
-const options = [
+const options1 = [
   'Settings',
   'About'
+];
+const options2 = [
+  'Delete',
+  'Rename'
 ];
 
 const ITEM_HEIGHT = 48;
 
-export default function LongMenu() {
+interface optionData{
+  option:string;
+}
+export default function LongMenu({option}:optionData) {
+  let options;
+  switch(option){
+    case "header":
+      options = options1;
+      break;
+    case "task":
+      options = options2;
+      break;
+    default:
+      options = [1,2,3];//щоб масив не був пустий(такий вивід - ознака помилки)
+      break
+  }
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -58,3 +77,5 @@ export default function LongMenu() {
     </div>
   );
 }
+
+

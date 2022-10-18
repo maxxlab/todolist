@@ -19,7 +19,7 @@ export default function Header({StateChanger}:Data) {
               To Do
             </Typography>
 
-            <Menu />
+            <Menu option = {"header"}/>
           </Toolbar>
         </AppBar>
     </>

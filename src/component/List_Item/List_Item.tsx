@@ -4,6 +4,7 @@ import ListItemText from '@mui/material/ListItemText';
 import { ExpandLess, ExpandMore } from '@mui/icons-material';
 import Collapse from '@mui/material/Collapse';
 import List from '@mui/material/List';
+import Menu from '../Menu/Menu';
 
 export default function ListItem(){
     const [open, setOpen] = React.useState(true);
@@ -15,12 +16,15 @@ export default function ListItem(){
         <>
             <ListItemButton>
                 <ListItemText primary="Tasks" />
+                <Menu option={'task'}/>
             </ListItemButton>
             <ListItemButton>
                 <ListItemText primary="Note1" />
+                <Menu option={'task'}/>
             </ListItemButton>
             <ListItemButton>
                 <ListItemText primary="Note2" />
+                <Menu option={'task'}/>
             </ListItemButton>
             <ListItemButton onClick={handleClick}>
                 <ListItemText primary="Folder1" />
@@ -30,9 +34,11 @@ export default function ListItem(){
                 <List component="div" disablePadding>
                     <ListItemButton>
                     <ListItemText primary="Note3" />
+                    <Menu option={'task'}/>
                     </ListItemButton>
                     <ListItemButton>
                     <ListItemText primary="Note4" />
+                    <Menu option={'task'}/>
                     </ListItemButton>
                 </List>
             </Collapse>
