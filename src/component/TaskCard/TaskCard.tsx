@@ -14,7 +14,7 @@ export default function TaskCard() {
       margin: 20,
       position: "inherit"
     }}>
-      <Card>
+      <Card sx={{marginRight: 5}}>
         <CardContent>
           <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
             Tasks
