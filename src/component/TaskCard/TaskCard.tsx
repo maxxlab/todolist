@@ -2,7 +2,9 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import Task from "../Task/Task"
+import Task from "../Task/Task";
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemText from '@mui/material/ListItemText';
 export default function TaskCard() {
   
   return (
@@ -26,10 +28,9 @@ export default function TaskCard() {
             <Task taskTitle = "Task2"/>
             <Task taskTitle = "Task3"/>
           </Box>
-
-          <Typography sx={{ textAlign: 'right' }}>
-
-          </Typography>
+            <ListItemButton sx={{color: "blue"}}>
+                <ListItemText primary="+ add new task" />
+            </ListItemButton>
         </CardContent>
       </Card>
     </div>
