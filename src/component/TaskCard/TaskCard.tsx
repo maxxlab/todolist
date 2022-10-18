@@ -1,13 +1,8 @@
-import React from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import StarBorderIcon from '@mui/icons-material/StarBorder';
-import StarIcon from '@mui/icons-material/Star';
-import Checkbox from '@mui/material/Checkbox';
 import Box from '@mui/material/Box';
-import { Button } from '@mui/material';
-
+import Task from "../Task/Task"
 export default function TaskCard() {
   
   return (
@@ -20,17 +15,16 @@ export default function TaskCard() {
       <Card>
         <CardContent>
           <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-            List
+            Tasks
           </Typography>
-          <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-            <Typography variant="h6" component="div" >
-              <Checkbox />Task Name
-              {/* sx={{textDecoration: 'line-through'}} */}
-            </Typography>
-            <Button>
-              <StarBorderIcon color="primary" />
-            </Button>
-
+          <Box sx={{ 
+            display: 'flex',
+            justifyContent: 'space-between',
+            flexDirection: "column" 
+          }}>
+            <Task taskTitle = "Task1"/>
+            <Task taskTitle = "Task2"/>
+            <Task taskTitle = "Task3"/>
           </Box>
 
           <Typography sx={{ textAlign: 'right' }}>

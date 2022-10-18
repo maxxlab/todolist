@@ -17,24 +17,24 @@ export default function ListItem(){
                 <ListItemText primary="Tasks" />
             </ListItemButton>
             <ListItemButton>
-                <ListItemText primary="Text1" />
+                <ListItemText primary="Note1" />
             </ListItemButton>
             <ListItemButton>
-                <ListItemText primary="Text2" />
+                <ListItemText primary="Note2" />
             </ListItemButton>
             <ListItemButton onClick={handleClick}>
                 <ListItemText primary="Folder1" />
                 {open ? <ExpandLess /> : <ExpandMore />}
             </ListItemButton>
             <Collapse in={open} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding>
-                <ListItemButton>
-                <ListItemText primary="Text2" />
-                </ListItemButton>
-                <ListItemButton>
-                <ListItemText primary="Text4" />
-                </ListItemButton>
-            </List>
+                <List component="div" disablePadding>
+                    <ListItemButton>
+                    <ListItemText primary="Note3" />
+                    </ListItemButton>
+                    <ListItemButton>
+                    <ListItemText primary="Note4" />
+                    </ListItemButton>
+                </List>
             </Collapse>
         </>
     );

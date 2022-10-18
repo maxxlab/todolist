@@ -1,6 +1,4 @@
-import React from 'react';
 import TaskCard from '../TaskCard/TaskCard';
-import AddTaskCard from '../AddTaskCard/AddTaskCard';
 
 
 export default function Main() {
@@ -10,9 +8,7 @@ export default function Main() {
       flexDirection: "column",
       width:"100%"
      }}>
-      <AddTaskCard />
       <TaskCard />
-      
     </div>
   );
 }

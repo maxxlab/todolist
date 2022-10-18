@@ -11,6 +11,9 @@ export default function CreateNewNote(){
             <ListItemButton sx={{color: "blue"}}>
                 <ListItemText primary="+ add new tasklist" />
             </ListItemButton>
+            <ListItemButton sx={{color: "blue"}}>
+                <ListItemText primary="+ add new folder" />
+            </ListItemButton>
         </>
     );
 };
