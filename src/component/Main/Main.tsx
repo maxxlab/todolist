@@ -1,5 +1,6 @@
 import TaskCard from '../TaskCard/TaskCard';
-
+import CompletedTaskCards from '../TaskCard/CompleteTaskCards';
+import CompleteTaskCards from '../TaskCard/CompleteTaskCards';
 
 export default function Main() {
   return (
@@ -10,6 +11,7 @@ export default function Main() {
       height: "100%"
      }}>
       <TaskCard />
+      <CompleteTaskCards/>
     </div>
   );
 }
