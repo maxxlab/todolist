@@ -9,12 +9,12 @@ export default function EmptyTaskCard() {
 
   return (
     <div style={{
-      width: "100%",
+      width: "95%",
       minWidth: 50,
-      margin: 20,
+      padding: 20,
       position: "inherit"
     }}>
-      <Card sx={{ marginRight: 5 }}>
+      <Card sx={{}}>
         <CardContent>
           <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
             Tasks

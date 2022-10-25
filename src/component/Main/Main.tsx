@@ -2,7 +2,11 @@ import TaskCard from '../TaskCard/TaskCard';
 import CompleteTaskCards from '../TaskCard/CompleteTaskCards';
 import EmptyTaskCard from '../TaskCard/EmptyTaskCard';
 
-export default function Main() {
+type MainProps = {
+  children: React.ReactNode; 
+};
+
+export default function Main(props: MainProps) {
   return (
     <div style={{
       display: "flex",
@@ -10,9 +14,8 @@ export default function Main() {
       width:"100%",
       height: "100%"
      }}>
-      <TaskCard />
-      <CompleteTaskCards/>
-      <EmptyTaskCard/>
+      {props.children}
+      
     </div>
   );
 }
