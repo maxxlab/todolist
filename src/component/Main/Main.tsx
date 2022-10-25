@@ -1,6 +1,6 @@
 import TaskCard from '../TaskCard/TaskCard';
-import CompletedTaskCards from '../TaskCard/CompleteTaskCards';
 import CompleteTaskCards from '../TaskCard/CompleteTaskCards';
+import EmptyTaskCard from '../TaskCard/EmptyTaskCard';
 
 export default function Main() {
   return (
@@ -12,6 +12,7 @@ export default function Main() {
      }}>
       <TaskCard />
       <CompleteTaskCards/>
+      <EmptyTaskCard/>
     </div>
   );
 }
