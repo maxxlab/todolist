@@ -1,6 +1,3 @@
-import TaskCard from '../TaskCard/TaskCard';
-import CompleteTaskCards from '../TaskCard/CompleteTaskCards';
-import EmptyTaskCard from '../TaskCard/EmptyTaskCard';
 
 type MainProps = {
   children: React.ReactNode; 
@@ -12,7 +9,7 @@ export default function Main(props: MainProps) {
       display: "flex",
       flexDirection: "column",
       width:"100%",
-      height: "100%"
+      minHeight: "500px"
      }}>
       {props.children}
       

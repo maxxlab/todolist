@@ -7,10 +7,12 @@ import ListItem from '../List_Item/List_Item';
 import Divider from '@mui/material/Divider';
 import CreateNewNote from '../CreateNewNote/CreateNewNote';
 
-import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import TaskCard from '../TaskCard/TaskCard';
 import EmptyTaskCard from '../TaskCard/EmptyTaskCard';
 import CompletedTaskCard from '../TaskCard/CompleteTaskCards';
+
+import Note from '../Note/Note';
 
 const drawerWidth: number = 240;
 
@@ -61,10 +63,11 @@ export default function Navbar({ openNavbar }: Data) {
             <CreateNewNote></CreateNewNote>
           </List>
         </Drawer>
-        <Main >
+        <Main>
           <Routes>
             <Route path="/home" element={<EmptyTaskCard />} />
             <Route path="/tasks" element={<><TaskCard /><CompletedTaskCard /></>} />
+            <Route path="/note" element={<Note />} />
           </Routes>
         </Main>
 

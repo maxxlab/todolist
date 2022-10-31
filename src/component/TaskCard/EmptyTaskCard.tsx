@@ -1,8 +1,6 @@
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
-import Task from "../Task/Task";
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 export default function EmptyTaskCard() {

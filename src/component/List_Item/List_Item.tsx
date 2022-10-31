@@ -28,28 +28,36 @@ export default function ListItem() {
                     <Menu option={'task'} />
                 </ListItemButton>
             </Link>
-            <ListItemButton>
-                <ListItemText primary="Note1" />
-                <Menu option={'task'} />
-            </ListItemButton>
-            <ListItemButton>
-                <ListItemText primary="Note2" />
-                <Menu option={'task'} />
-            </ListItemButton>
+            <Link to="/note">
+                <ListItemButton>
+                    <ListItemText primary="Note" />
+                    <Menu option={'task'} />
+                </ListItemButton>
+            </Link>
+            <Link to="/note">
+                <ListItemButton>
+                    <ListItemText primary="Note" />
+                    <Menu option={'task'} />
+                </ListItemButton>
+            </Link>
             <ListItemButton onClick={handleClick}>
                 <ListItemText primary="Folder1" />
                 {open ? <ExpandLess /> : <ExpandMore />}
             </ListItemButton>
             <Collapse in={open} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
-                    <ListItemButton>
-                        <ListItemText primary="Note3" />
-                        <Menu option={'task'} />
-                    </ListItemButton>
-                    <ListItemButton>
-                        <ListItemText primary="Note4" />
-                        <Menu option={'task'} />
-                    </ListItemButton>
+                    <Link to="/note">
+                        <ListItemButton>
+                            <ListItemText primary="Note" />
+                            <Menu option={'task'} />
+                        </ListItemButton>
+                    </Link>
+                    <Link to="/note">
+                        <ListItemButton>
+                            <ListItemText primary="Note" />
+                            <Menu option={'task'} />
+                        </ListItemButton>
+                    </Link>
                 </List>
             </Collapse>
         </>
