@@ -2,6 +2,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import TextareaAutosize from '@mui/material/TextareaAutosize';
 export default function Note() {
   
   return (
@@ -18,17 +19,19 @@ export default function Note() {
             Note
           </Typography>
           <Box>
-            <textarea
-            style={{
+            <TextareaAutosize
+              placeholder="Please, write your notes"
+              style={{ 
                 width: "98.5%",
-                height: "500px" ,
+                minHeight: "500px" ,
                 marginLeft: "auto",
                 marginRight: "auto",
                 padding:"10px",
-                fontSize: "16px",
+                fontSize: "20px",
+                fontFamily: "Times New Roman",
                 resize: "none"
-            }}>
-            </textarea>
+               }}
+            />
           </Box>
         </CardContent>
       </Card>
