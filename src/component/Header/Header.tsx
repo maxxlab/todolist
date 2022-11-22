@@ -2,6 +2,9 @@ import {Toolbar, IconButton, Typography} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import Menu from '../Menu/Menu';
 import AppBar from '@mui/material/AppBar';
+import UserOutsideSystem from "../User/UserOutsideSystem"
+import UserInsideSystem from "../User/UserInsideSystem"
+import Box from '@mui/material/Box';
 
 interface Data{
   StateChanger:Function;
@@ -18,8 +21,12 @@ export default function Header({StateChanger}:Data) {
             <Typography variant="h6" color="inherit" component="div">
               To Do
             </Typography>
-
-            <Menu option = {"header"}/>
+            <Box sx={{
+              display: "flex"
+            }}>
+              <UserInsideSystem/>
+              <Menu option = {"header"}/>
+            </Box>
           </Toolbar>
         </AppBar>
     </>
