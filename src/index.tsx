@@ -4,6 +4,10 @@ import { BrowserRouter } from 'react-router-dom';
 import './index.css';
 import App from './component/App/App';
 import reportWebVitals from './reportWebVitals';
+import { Provider } from 'react-redux';
+import Autorization from './component/authPages/Autorization';
+import { store } from './store';
+import './firebase';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -11,7 +15,11 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <Provider store={store}>
+        <Autorization />
+      </Provider>
+
+      {/* <App /> */}
     </BrowserRouter>
   </React.StrictMode>
 );

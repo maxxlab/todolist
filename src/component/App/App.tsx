@@ -6,7 +6,8 @@ import Navbar from '../Navbar/Navbar';
 function App() {
   const [open, setOpen] = React.useState(false);
   return (
-    <> 
+     <>
+      
       <Header
         StateChanger={()=>{
           setOpen(!open);
