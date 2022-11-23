@@ -5,7 +5,7 @@ import './index.css';
 import App from './component/App/App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
-import Autorization from './component/authPages/Autorization';
+import Autorization from './component/AuthPages/Autorization';
 import { store } from './store';
 import './firebase';
 
@@ -18,8 +18,6 @@ root.render(
       <Provider store={store}>
         <Autorization />
       </Provider>
-
-      {/* <App /> */}
     </BrowserRouter>
   </React.StrictMode>
 );

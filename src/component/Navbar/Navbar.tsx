@@ -13,7 +13,7 @@ import EmptyTaskCard from '../TaskCard/EmptyTaskCard';
 import CompletedTaskCard from '../TaskCard/CompleteTaskCards';
 
 import Note from '../Note/Note';
-import LoginPage from '../authPages/LoginPage';
+import LoginPage from '../AuthPages/LoginPage';
 
 const drawerWidth: number = 240;
 
