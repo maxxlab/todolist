@@ -18,8 +18,6 @@ root.render(
       <Provider store={store}>
         <Autorization />
       </Provider>
-
-      {/* <App /> */}
     </BrowserRouter>
   </React.StrictMode>
 );
