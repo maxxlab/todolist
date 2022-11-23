@@ -2,7 +2,6 @@ import { Box } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { Login } from '../AuthComponents/Login';
 import { Typography } from '@mui/material';
-import { padding } from '@mui/system';
 import { Button } from "@mui/material";
 
 

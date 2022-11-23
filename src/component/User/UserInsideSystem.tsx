@@ -6,6 +6,8 @@ import PersonIcon from '@mui/icons-material/Person';
 import { signOut } from '@firebase/auth';
 import { Link } from 'react-router-dom';
 import LoginPage from '../authPages/LoginPage';
+import { removeUser } from '../../store/slices/userSlice';
+import { useAppDispatch } from '../../hooks/redux-hooks';
 
 const option = [
   'Settings',
@@ -25,7 +27,9 @@ export default function LongMenu() {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  
+
+  const dispatch = useAppDispatch();
+
 
   return (
     <div>
@@ -56,16 +60,14 @@ export default function LongMenu() {
         }}
       >
         <MenuItem onClick={handleClose}>
-            {option[0]}
+          {option[0]}
         </MenuItem>
         <MenuItem onClick={handleClose}>
-            {option[1]}
+          {option[1]}
         </MenuItem>
-        <Link to="/login">
-          <MenuItem>
-            {option[2]}
-          </MenuItem>
-        </Link>
+        <MenuItem onClick={() => setTimeout(() => {dispatch(removeUser())}, 1000)}>
+          {option[2]}
+        </MenuItem>
       </Menu>
     </div>
   );
