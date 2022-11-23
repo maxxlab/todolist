@@ -1425,7 +1425,7 @@
   "resolved" "https://registry.npmjs.org/@firebase/auth-types/-/auth-types-0.11.1.tgz"
   "version" "0.11.1"
 
-"@firebase/auth@0.20.11":
+"@firebase/auth@^0.20.11", "@firebase/auth@0.20.11":
   "integrity" "sha512-cKy91l4URDG3yWfPK7tjUySh2wCLxtTilsR59jiqQJLReBrQsKP79eFDJ6jqWwbEh3+f1lmoH1nKswwbo9XdmA=="
   "resolved" "https://registry.npmjs.org/@firebase/auth/-/auth-0.20.11.tgz"
   "version" "0.20.11"

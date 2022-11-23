@@ -3,7 +3,9 @@ import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import PersonIcon from '@mui/icons-material/Person';
-
+import { signOut } from '@firebase/auth';
+import { Link } from 'react-router-dom';
+import LoginPage from '../authPages/LoginPage';
 
 const option = [
   'Settings',
@@ -23,6 +25,7 @@ export default function LongMenu() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  
 
   return (
     <div>
@@ -52,11 +55,17 @@ export default function LongMenu() {
           },
         }}
       >
-        {option.map((option) => (
-          <MenuItem key={option} onClick={handleClose}>
-            {option}
+        <MenuItem onClick={handleClose}>
+            {option[0]}
+        </MenuItem>
+        <MenuItem onClick={handleClose}>
+            {option[1]}
+        </MenuItem>
+        <Link to="/login">
+          <MenuItem>
+            {option[2]}
           </MenuItem>
-        ))}
+        </Link>
       </Menu>
     </div>
   );
