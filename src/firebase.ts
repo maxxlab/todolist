@@ -6,7 +6,9 @@ const firebaseConfig = {
   projectId: 'todo-2ce3f',
   storageBucket: 'todo-2ce3f.appspot.com',
   messagingSenderId: '355964104553',
-  appId: '1:355964104553:web:0810cc069e96007560d7f8'
+  appId: '1:355964104553:web:0810cc069e96007560d7f8',
+  databaseURL: 'https://todo-2ce3f-default-rtdb.europe-west1.firebasedatabase.app'
 };
 
 const app = initializeApp(firebaseConfig);
+export default app;

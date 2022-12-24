@@ -1,12 +1,19 @@
 import React from 'react';
 import Task from './Task';
+import { useSelector } from 'react-redux';
 
-export const TaskList = ({tasks} : any) => {
+export const TaskList = () => {
+
+  const todos = useSelector((state : any) => state.todos.todos);
   return (
     <div>
+      <>
       {
-        //  tasks.map(task => <Task key={task.id} {...task}/>)
+        todos.map((todo: any)=> (
+          <Task key={todo.id} {...todo}/>
+        ))
       }
+      </>
     </div>
   )
 }

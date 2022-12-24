@@ -66,9 +66,13 @@ export default function LongMenu() {
         <MenuItem onClick={handleClose}>
           {option[1]}
         </MenuItem>
-        <MenuItem onClick={() => setTimeout(() => {dispatch(removeUser())}, 1000)}>
-          {option[2]}
-        </MenuItem>
+        <Link to="/">
+          <MenuItem onClick={() => setTimeout(() => {
+            dispatch(removeUser());
+          }, 1000)}>
+            {option[2]}
+          </MenuItem>
+        </Link>
       </Menu>
     </div>
   );

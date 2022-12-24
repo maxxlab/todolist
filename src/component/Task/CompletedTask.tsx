@@ -7,6 +7,9 @@ interface title{
     taskTitle:string;
 }
 export default function CompletedTask({taskTitle}:title){
+
+    
+
     return(
     <Box sx={{
         display: 'flex',
