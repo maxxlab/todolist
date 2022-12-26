@@ -11,6 +11,7 @@ interface taskProps {
 export const TaskList = () => {
 
   const todos = useSelector((state : any) => state.todos.todos);
+  console.log(todos)
   return (
     <div>
       <>

@@ -8,8 +8,8 @@ interface tasksProps {
   completed: boolean
 }
 
-const initialState = {
-  todos: [{}]
+const initialState:{todos:object[]} = {
+  todos: []
 };
 
 function writeTask(id: string, text: string, completed: boolean) {
@@ -18,22 +18,6 @@ function writeTask(id: string, text: string, completed: boolean) {
     id: id,
     text: text,
     completed: completed
-  });
-}
-
-
-
-function readTasks() {
-  const db = getDatabase();
-  const starCountRef = ref(db, 'todo/');
-  onValue(starCountRef, (snapshot) => {
-    const data = snapshot.val();
-    const taskList = [];
-    for(let id in data) {
-      taskList.push(data[id]);
-    }
-    // setTasks(taskList);
-    console.log(data);
   });
 }
 
@@ -51,10 +35,22 @@ const todoSlice = createSlice({
       })
       writeTask(uid, action.payload, false);
     },
+    readTasks(state, action) {
+      const db = getDatabase();
+      const starCountRef = ref(db, 'todo/');
+      onValue(starCountRef, (snapshot) => {
+        const data = snapshot.val();
+        if(state.todos.length === 1){
+          for(let id in data) {
+              state.todos.push(data[id]);
+            }
+        }
+      });
+    },
     removeTodo(state, action) {},
     toggleTodoComplete (state, action) {}
   }
 });
 
-export const {addTodo, removeTodo, toggleTodoComplete} = todoSlice.actions;
+export const {addTodo, readTasks, removeTodo, toggleTodoComplete} = todoSlice.actions;
 export default todoSlice.reducer;
