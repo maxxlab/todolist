@@ -2,6 +2,12 @@ import React from 'react';
 import Task from './Task';
 import { useSelector } from 'react-redux';
 
+interface taskProps {
+  id: string;
+  text: string
+  completed: boolean
+}
+
 export const TaskList = () => {
 
   const todos = useSelector((state : any) => state.todos.todos);
@@ -9,8 +15,8 @@ export const TaskList = () => {
     <div>
       <>
       {
-        todos.map((todo: any)=> (
-          <Task key={todo.id} {...todo}/>
+        todos.map((todo: taskProps)=> (
+          <Task key={todo.id} text={todo.text} id={todo.id} completed={todo.completed}/>
         ))
       }
       </>

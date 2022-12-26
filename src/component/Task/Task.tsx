@@ -6,12 +6,12 @@ import Box from '@mui/material/Box';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 interface taskProps {
-    taskTitle: string;
-    id: string
+    id: string;
+    text: string
     completed: boolean
 }
 
-export default function Task({taskTitle, id, completed}: taskProps) {
+export default function Task({id, text, completed}: taskProps) {
     const handleClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
 
     };
@@ -23,7 +23,7 @@ export default function Task({taskTitle, id, completed}: taskProps) {
             justifyContent: "space-between"
         }}>
             <Typography variant="h6" component="div">
-                <Checkbox/>{taskTitle}
+                <Checkbox/>{text}
             </Typography>
             <Box>
                 <Button>

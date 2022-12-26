@@ -9,9 +9,9 @@ import { useEffect, useState } from 'react';
 import { getDatabase, ref, set, child, get, onValue, DataSnapshot, remove } from "firebase/database";
 import guid from '../../tools/tools';
 import { useDispatch } from 'react-redux';
-import {addTodo} from '../../store/slices/todoSlice';
+import { addTodo } from '../../store/slices/todoSlice';
 import { useAppDispatch } from "../../hooks/redux-hooks";
-import {TaskList} from '../Task/TaskList';
+import { TaskList } from '../Task/TaskList';
 
 interface tasksProps {
   id: string,
@@ -25,41 +25,13 @@ export default function TaskCard() {
   const [text, setText] = useState('');
 
   const dispatch = useAppDispatch();
-  
+
 
   const addTask = () => {
-    const id = guid();
-    const taskText = text;
-    const completed = false;
-    dispatch(addTodo({taskText}));
-    // if (text.trim().length) {
-    //   setTasks([
-    //     ...tasks,
-    //     {
-    //       id: id,
-    //       text,
-    //       completed: false
-    //     }
-    //   ])
-
-      writeTask(id, taskText, completed);
-      readTasks();
-      setText('');
-    
+    dispatch(addTodo( text ));
+    setText('');
   }
 
-
-
-  function writeTask(id: string, text: string, completed: boolean) {
-    const db = getDatabase();
-    set(ref(db, 'todo/' + id), {
-      id: id,
-      text: text,
-      completed: completed
-    });
-  }
-
-  
 
   function readTasks() {
     const db = getDatabase();
@@ -67,7 +39,7 @@ export default function TaskCard() {
     onValue(starCountRef, (snapshot) => {
       const data = snapshot.val();
       const taskList = [];
-      for(let id in data) {
+      for (let id in data) {
         taskList.push(data[id]);
       }
       // setTasks(taskList);
@@ -75,6 +47,9 @@ export default function TaskCard() {
     });
   }
 
+  useEffect(() => {
+    readTasks();
+  }, []);
 
   return (
     <div style={{
@@ -99,9 +74,9 @@ export default function TaskCard() {
               <Button variant="contained" onClick={addTask}>Add</Button>
             </Box>
             <>
-            {/* <TaskList/> */}
+              <TaskList/>
               {
-                tasks.map(task => <Task taskTitle={task.text} id={''} completed={false} key={guid()} />)
+                // tasks.map(task => <Task taskTitle={task.text} id={''} completed={false} key={guid()} />)
               }
             </>
 
@@ -123,5 +98,5 @@ export default function TaskCard() {
       </Card>
     </div>
   );
-          
+
 }

@@ -11,3 +11,8 @@ export function useAuth() {
     id
   };
 }
+
+export function useTasks() {
+  const todos = useAppSelector(state => state.todos.todos);
+  return todos;
+}
