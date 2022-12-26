@@ -26,13 +26,15 @@ export default function TaskCard() {
 
   const dispatch = useAppDispatch();
 
+  useEffect(() => {
+    dispatch(readTasks(""));
+  },[])
 
   const addTask = () => {
     dispatch(addTodo( text ));
     setText('');
   }
-  console.log("hello")
-  dispatch(readTasks(""));
+  
 
   
   return (

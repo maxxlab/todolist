@@ -52,7 +52,6 @@ export default function Navbar({ openNavbar }: Data) {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'flex-end',
-
             }}
           >
           </Toolbar>

@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { getDatabase, ref, set, onValue, DataSnapshot, remove } from "firebase/database";
 import guid from '../../tools/tools';
 
@@ -40,11 +40,7 @@ const todoSlice = createSlice({
       const starCountRef = ref(db, 'todo/');
       onValue(starCountRef, (snapshot) => {
         const data = snapshot.val();
-        if(state.todos.length === 1){
-          for(let id in data) {
-              state.todos.push(data[id]);
-            }
-        }
+        state.todos.push(Object.values(data));
       });
     },
     removeTodo(state, action) {},
