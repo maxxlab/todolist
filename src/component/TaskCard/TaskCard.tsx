@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react';
 import { getDatabase, ref, set, child, get, onValue, DataSnapshot, remove } from "firebase/database";
 import guid from '../../tools/tools';
 import { useDispatch } from 'react-redux';
-import { addTodo, readTasks } from '../../store/slices/todoSlice';
+import { addTodo, fetchTodo, readTasks } from '../../store/slices/todoSlice';
 import { useAppDispatch } from "../../hooks/redux-hooks";
 import { TaskList } from '../Task/TaskList';
 
@@ -27,7 +27,7 @@ export default function TaskCard() {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(readTasks(""));
+    dispatch(fetchTodo());
   },[])
 
   const addTask = () => {

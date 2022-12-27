@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { getDatabase, ref, set, onValue, DataSnapshot, remove } from "firebase/database";
+import { getDatabase, ref, set, onValue, DataSnapshot, remove, get } from "firebase/database";
+import { start } from "repl";
 import guid from '../../tools/tools';
 
 interface tasksProps {
@@ -21,7 +22,15 @@ function writeTask(id: string, text: string, completed: boolean) {
   });
 }
 
-
+export const fetchTodo = createAsyncThunk(
+  "todos/fetchTodos",
+  async () => {
+    const db = getDatabase();
+    const snapshot = await get(ref(db, 'todo/'));
+    const data = snapshot.val();
+    return data;
+  }
+)
 const todoSlice = createSlice({
   name: 'todos',
   initialState,
@@ -45,6 +54,15 @@ const todoSlice = createSlice({
     },
     removeTodo(state, action) {},
     toggleTodoComplete (state, action) {}
+  },
+  extraReducers:{
+    [fetchTodo.fulfilled.toString()]: (state,action) => {
+      if (state.todos.length === 0){
+        const todo:object[] = Object.values(action.payload)
+        state.todos.push(...todo)
+        console.log(todo)
+      }
+    }
   }
 });
 
