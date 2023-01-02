@@ -22,44 +22,6 @@ export default function ListItem() {
                     <Menu option={'task'} />
                 </ListItemButton>
             </Link>
-            <Link to="/home">
-                <ListItemButton>
-                    <ListItemText primary="Empty Tasks" />
-                    <Menu option={'task'} />
-                </ListItemButton>
-            </Link>
-            <Link to="/note">
-                <ListItemButton>
-                    <ListItemText primary="Note" />
-                    <Menu option={'task'} />
-                </ListItemButton>
-            </Link>
-            <Link to="/note">
-                <ListItemButton>
-                    <ListItemText primary="Note" />
-                    <Menu option={'task'} />
-                </ListItemButton>
-            </Link>
-            <ListItemButton onClick={handleClick}>
-                <ListItemText primary="Folder1" />
-                {open ? <ExpandLess /> : <ExpandMore />}
-            </ListItemButton>
-            <Collapse in={open} timeout="auto" unmountOnExit>
-                <List component="div" disablePadding>
-                    <Link to="/note">
-                        <ListItemButton>
-                            <ListItemText primary="Note" />
-                            <Menu option={'task'} />
-                        </ListItemButton>
-                    </Link>
-                    <Link to="/note">
-                        <ListItemButton>
-                            <ListItemText primary="Note" />
-                            <Menu option={'task'} />
-                        </ListItemButton>
-                    </Link>
-                </List>
-            </Collapse>
         </>
     );
 }
