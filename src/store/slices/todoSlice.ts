@@ -1,10 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { getDatabase, ref, set, onValue, DataSnapshot, remove, get } from "firebase/database";
+import { useSelector } from "react-redux";
 import { start } from "repl";
-import { useAppSelector } from '../../hooks/redux-hooks';
 import guid from '../../tools/tools';
-
-import {useAuth} from '../../hooks/use-auth';
 
 interface tasksProps {
   id: string,
@@ -16,9 +14,9 @@ const initialState:{todos:object[]} = {
   todos: []
 };
 
-function writeTask(uid: string, id: string, text: string, completed: boolean) {
+function writeTask(id: string, text: string, completed: boolean) {
   const db = getDatabase();
-  set(ref(db,  uid + '/todo/' + id), {
+  set(ref(db, 'todo/' + id), {
     id: id,
     text: text,
     completed: completed
@@ -27,35 +25,25 @@ function writeTask(uid: string, id: string, text: string, completed: boolean) {
 
 export const fetchTodo = createAsyncThunk(
   "todos/fetchTodos",
-  async () => {
+  async (id: string) => {
     const db = getDatabase();
-    const snapshot = await get(ref(db, '/todo/'));
+    const snapshot = await get(ref(db, id + '/todo/'));
     const data = snapshot.val();
     return data;
   }
 )
-
-
-export const fetchUser = createAsyncThunk(
-  "user/fetchUser",
-  async () => {
-    const {isAuth, id} = useAuth();
-    return id;
-  }
-)
-
 const todoSlice = createSlice({
   name: 'todos',
   initialState,
   reducers: {
     addTodo(state, action) {
-      const uidTask = guid();
+      const uid = guid();
       state.todos.push({
-        id: uidTask,
-        text: action.payload.text,
+        id: uid,
+        text: action.payload,
         completed: false
       })
-      writeTask(action.payload.user.id, uidTask, action.payload.text, false);
+      writeTask(uid, action.payload, false);
     },
     readTasks(state, action) {
       const db = getDatabase();

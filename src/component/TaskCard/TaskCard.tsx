@@ -28,7 +28,7 @@ export default function TaskCard() {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(fetchTodo());
+    dispatch(fetchTodo(user.id));
   },[])
 
   const addTask = () => {
