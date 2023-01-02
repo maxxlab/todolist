@@ -1,6 +1,7 @@
 import React from 'react';
 import Task from './Task';
 import { useSelector } from 'react-redux';
+import {useAuth} from '../../hooks/use-auth';
 
 interface taskProps {
   id: string;
@@ -11,7 +12,9 @@ interface taskProps {
 export const TaskList = () => {
 
   const todos = useSelector((state : any) => state.todos.todos);
-  console.log(todos)
+  const user = useSelector((state : any) => state.user);
+  console.log(todos);
+  console.log(user);
   return (
     <div>
       <>

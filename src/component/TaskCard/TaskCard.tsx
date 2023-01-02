@@ -7,11 +7,11 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { useEffect, useState } from 'react';
 import { getDatabase, ref, set, child, get, onValue, DataSnapshot, remove } from "firebase/database";
-import guid from '../../tools/tools';
 import { useDispatch } from 'react-redux';
 import { addTodo, fetchTodo, readTasks } from '../../store/slices/todoSlice';
 import { useAppDispatch } from "../../hooks/redux-hooks";
 import { TaskList } from '../Task/TaskList';
+import { useSelector } from 'react-redux';
 
 interface tasksProps {
   id: string,
@@ -23,6 +23,7 @@ export default function TaskCard() {
 
   const [tasks, setTasks] = useState<tasksProps[]>([]);
   const [text, setText] = useState('');
+  const user = useSelector((state : any) => state.user);
 
   const dispatch = useAppDispatch();
 
@@ -31,7 +32,7 @@ export default function TaskCard() {
   },[])
 
   const addTask = () => {
-    dispatch(addTodo( text ));
+    dispatch(addTodo( {text, user} ));
     setText('');
   }
   

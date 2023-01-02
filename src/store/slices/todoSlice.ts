@@ -1,7 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { getDatabase, ref, set, onValue, DataSnapshot, remove, get } from "firebase/database";
 import { start } from "repl";
+import { useAppSelector } from '../../hooks/redux-hooks';
 import guid from '../../tools/tools';
+
+import {useAuth} from '../../hooks/use-auth';
 
 interface tasksProps {
   id: string,
@@ -13,9 +16,9 @@ const initialState:{todos:object[]} = {
   todos: []
 };
 
-function writeTask(id: string, text: string, completed: boolean) {
+function writeTask(uid: string, id: string, text: string, completed: boolean) {
   const db = getDatabase();
-  set(ref(db, 'todo/' + id), {
+  set(ref(db,  uid + '/todo/' + id), {
     id: id,
     text: text,
     completed: completed
@@ -26,23 +29,33 @@ export const fetchTodo = createAsyncThunk(
   "todos/fetchTodos",
   async () => {
     const db = getDatabase();
-    const snapshot = await get(ref(db, 'todo/'));
+    const snapshot = await get(ref(db, '/todo/'));
     const data = snapshot.val();
     return data;
   }
 )
+
+
+export const fetchUser = createAsyncThunk(
+  "user/fetchUser",
+  async () => {
+    const {isAuth, id} = useAuth();
+    return id;
+  }
+)
+
 const todoSlice = createSlice({
   name: 'todos',
   initialState,
   reducers: {
     addTodo(state, action) {
-      const uid = guid();
+      const uidTask = guid();
       state.todos.push({
-        id: uid,
-        text: action.payload,
+        id: uidTask,
+        text: action.payload.text,
         completed: false
       })
-      writeTask(uid, action.payload, false);
+      writeTask(action.payload.user.id, uidTask, action.payload.text, false);
     },
     readTasks(state, action) {
       const db = getDatabase();
