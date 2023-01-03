@@ -8,20 +8,20 @@ import Menu from '../Menu/Menu';
 
 import { Link } from 'react-router-dom';
 
-export default function ListItem() {
+export default function ListItem(props: any) {
     const [open, setOpen] = React.useState(true);
 
     const handleClick = () => {
         setOpen(!open);
     };
     return (
-        <>
+        <React.Fragment key={props.title}>
             <Link to="/tasks">
                 <ListItemButton>
-                    <ListItemText primary="Tasks" />
+                    <ListItemText primary={props.title} />
                     <Menu option={'task'} />
                 </ListItemButton>
             </Link>
-        </>
+        </React.Fragment>
     );
 }

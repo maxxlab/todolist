@@ -11,9 +11,10 @@ import { Routes, Route } from 'react-router-dom';
 import TaskCard from '../TaskCard/TaskCard';
 import EmptyTaskCard from '../TaskCard/EmptyTaskCard';
 import CompletedTaskCard from '../TaskCard/CompleteTaskCards';
-
+import { useSelector } from 'react-redux';
 import Note from '../Note/Note';
 import LoginPage from '../authPages/LoginPage';
+import { useState } from 'react';
 
 const drawerWidth: number = 240;
 
@@ -42,7 +43,15 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 interface Data {
   openNavbar: boolean;
 }
+
+interface listProps {
+  title: string
+}
+
 export default function Navbar({ openNavbar }: Data) {
+
+  const lists = useSelector((state : any) => state.lists.lists);
+
   return (
     <>
       <Box sx={{ display: 'flex' }}>
@@ -58,7 +67,12 @@ export default function Navbar({ openNavbar }: Data) {
           <List component="nav" sx={{
             ...(!openNavbar && { display: 'none' })
           }}>
-            <ListItem></ListItem>
+            <ListItem title="Tasks"></ListItem>
+            {
+              lists.map((list : listProps) => (
+                <ListItem title={list.title}></ListItem>
+              ))
+            }
             <Divider sx={{ my: 1 }} />
             <CreateNewNote></CreateNewNote>
           </List>

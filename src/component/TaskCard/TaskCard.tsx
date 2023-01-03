@@ -23,21 +23,21 @@ export default function TaskCard() {
 
   const [tasks, setTasks] = useState<tasksProps[]>([]);
   const [text, setText] = useState('');
-  const user = useSelector((state : any) => state.user);
+  const user = useSelector((state: any) => state.user);
 
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(fetchTodo(user.id));
-  },[])
+  }, [])
 
   const addTask = () => {
-    dispatch(addTodo( {text, user} ));
+    dispatch(addTodo({ text, user }));
     setText('');
   }
-  
 
-  
+
+
   return (
     <div style={{
       width: "95%",
@@ -60,27 +60,12 @@ export default function TaskCard() {
               <TextField id="standard-basic" value={text} onChange={(e) => setText(e.target.value)} variant="standard" sx={{ width: '30rem', marginRight: '2rem' }} />
               <Button variant="contained" onClick={addTask}>Add</Button>
             </Box>
-            <>
-              <TaskList/>
-              {
-                // tasks.map(task => <Task taskTitle={task.text} id={''} completed={false} key={guid()} />)
-              }
-            </>
+
+            <TaskList />
+
 
           </Box>
 
-          {/* <Box sx={{ 
-            display: 'flex',
-            justifyContent: 'space-between',
-            flexDirection: "column" 
-          }}>
-            <Task taskTitle = "Task1"/>
-            <Task taskTitle = "Task2"/>
-            <Task taskTitle = "Task3"/>
-          </Box>
-            <ListItemButton sx={{color: "blue"}}>
-                <ListItemText primary="+ add new task" />
-            </ListItemButton> */}
         </CardContent>
       </Card>
     </div>

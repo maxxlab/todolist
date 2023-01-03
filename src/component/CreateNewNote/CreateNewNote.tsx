@@ -3,6 +3,8 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import CreationModal from '../Modal/CreationModal';
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField } from '@mui/material';
+import { useAppDispatch } from "../../hooks/redux-hooks";
+import { addList } from '../../store/slices/listSlice';
 
 const style = {
     position: 'absolute' as 'absolute',
@@ -25,9 +27,13 @@ const ariaLabel = { 'aria-label': 'description' };
 export default function CreateNewNote() {
     const [open, setOpen] = useState(false);
     const [title, changeTitle] = useState('')
+
+    const dispatch = useAppDispatch();
+
     const handleChange = () => setOpen(!open);
     const createTasklist = () => {
-        alert(title);
+        // alert(title);
+        dispatch(addList(title));
         handleChange();
     }
 
