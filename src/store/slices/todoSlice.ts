@@ -43,7 +43,7 @@ const todoSlice = createSlice({
         text: action.payload.text,
         completed: false
       })
-      writeTask(action.payload.user.id, uid, action.payload, false);
+      writeTask(action.payload.user.id, uid, action.payload.text, false);
     },
     readTasks(state, action) {
       const db = getDatabase();

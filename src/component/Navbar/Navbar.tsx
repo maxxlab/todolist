@@ -51,7 +51,7 @@ interface listProps {
 export default function Navbar({ openNavbar }: Data) {
 
   const lists = useSelector((state : any) => state.lists.lists);
-
+  console.log(lists)
   return (
     <>
       <Box sx={{ display: 'flex' }}>

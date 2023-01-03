@@ -55,7 +55,8 @@ export default function CreateNewNote() {
                     <TextField 
                     sx={{
                         display:'flex', 
-                        alignItems:'center'}} 
+                        alignItems:'center'
+                    }} 
                     id="createTasklist" 
                     variant="outlined"
                     onChange={(e)=>changeTitle(e.target.value)}

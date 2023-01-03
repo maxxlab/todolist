@@ -16,14 +16,12 @@ export const TaskList = () => {
   console.log(todos);
   console.log(user);
   return (
-    <div>
       <>
-      {
-        todos.map((todo: taskProps)=> (
-          <Task key={todo.id} text={todo.text} id={todo.id} completed={todo.completed}/>
-        ))
-      }
+        {
+          todos.map((todo: taskProps)=> (
+            <Task key={todo.id} text={todo.text} id={todo.id} completed={todo.completed}/>
+          ))
+        }
       </>
-    </div>
   )
 }

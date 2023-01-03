@@ -29,7 +29,7 @@ export default function TaskCard() {
 
   useEffect(() => {
     dispatch(fetchTodo(user.id));
-  }, [])
+  }, [dispatch, user.id])
 
   const addTask = () => {
     dispatch(addTodo({ text, user }));
@@ -45,7 +45,7 @@ export default function TaskCard() {
       padding: 20,
       position: "inherit"
     }}>
-      <Card sx={{}}>
+      <Card>
         <CardContent>
           <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
             Tasks
