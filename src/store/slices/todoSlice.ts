@@ -14,9 +14,9 @@ const initialState:{todos:object[]} = {
   todos: []
 };
 
-function writeTask(id: string, text: string, completed: boolean) {
+function writeTask(uid: string, id: string, text: string, completed: boolean) {
   const db = getDatabase();
-  set(ref(db, 'todo/' + id), {
+  set(ref(db, uid + '/todo/' + id), {
     id: id,
     text: text,
     completed: completed
@@ -40,10 +40,10 @@ const todoSlice = createSlice({
       const uid = guid();
       state.todos.push({
         id: uid,
-        text: action.payload,
+        text: action.payload.text,
         completed: false
       })
-      writeTask(uid, action.payload, false);
+      writeTask(action.payload.user.id, uid, action.payload, false);
     },
     readTasks(state, action) {
       const db = getDatabase();
