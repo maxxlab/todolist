@@ -32,6 +32,13 @@ export const fetchTodo = createAsyncThunk(
     return data;
   }
 )
+
+function deleteTask(uid: string, id: string,){
+  const db = getDatabase();
+  remove(ref(db, uid + '/todo/' + id));
+}
+
+
 const todoSlice = createSlice({
   name: 'todos',
   initialState,
@@ -53,8 +60,14 @@ const todoSlice = createSlice({
         state.todos.push(Object.values(data));
       });
     },
-    removeTodo(state, action) {},
-    toggleTodoComplete (state, action) {}
+    removeTodo(state, action) {
+      state.todos = state.todos.filter((todo : any) => todo.id !== action.payload.id);
+      deleteTask(action.payload.user.id, action.payload.id);
+    },
+    toggleTodoComplete (state, action) {
+      const toggledTodo : any = state.todos.find((todo :any) => todo.id === action.payload.id);
+      toggledTodo.completed = !toggledTodo.completed;
+    }
   },
   extraReducers:{
     [fetchTodo.fulfilled.toString()]: (state,action) => {
