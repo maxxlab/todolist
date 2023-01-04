@@ -15,6 +15,7 @@ import { useSelector } from 'react-redux';
 import Note from '../Note/Note';
 import LoginPage from '../authPages/LoginPage';
 import { useState } from 'react';
+import { match } from 'assert';
 
 const drawerWidth: number = 240;
 
@@ -67,7 +68,6 @@ export default function Navbar({ openNavbar }: Data) {
           <List component="nav" sx={{
             ...(!openNavbar && { display: 'none' })
           }}>
-            <ListItem title="Tasks"></ListItem>
             {
               lists.map((list : listProps) => (
                 <ListItem title={list.title}></ListItem>
@@ -80,7 +80,7 @@ export default function Navbar({ openNavbar }: Data) {
         <Main>
           <Routes>
             <Route path="/home" element={<EmptyTaskCard />} />
-            <Route path="/tasks" element={<><TaskCard /><CompletedTaskCard /></>} />
+            <Route path="/:title" element={<TaskCard/>}/>
             <Route path="/note" element={<Note />} />
           </Routes>
         </Main>

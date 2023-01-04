@@ -16,7 +16,7 @@ export default function ListItem(props: any) {
     };
     return (
         <React.Fragment key={props.title}>
-            <Link to="/tasks">
+            <Link to={"/" + props.title}>
                 <ListItemButton>
                     <ListItemText primary={props.title} />
                     <Menu option={'task'} />

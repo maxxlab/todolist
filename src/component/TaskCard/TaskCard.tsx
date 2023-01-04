@@ -12,6 +12,7 @@ import { addTodo, fetchTodo, readTasks } from '../../store/slices/todoSlice';
 import { useAppDispatch } from "../../hooks/redux-hooks";
 import { TaskList } from '../Task/TaskList';
 import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
 interface tasksProps {
   id: string,
@@ -19,12 +20,14 @@ interface tasksProps {
   completed: boolean
 }
 
+
+
 export default function TaskCard() {
 
   const [tasks, setTasks] = useState<tasksProps[]>([]);
   const [text, setText] = useState('');
   const user = useSelector((state: any) => state.user);
-
+  const params = useParams();
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -48,7 +51,7 @@ export default function TaskCard() {
       <Card>
         <CardContent>
           <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-            Tasks
+            {params.title}
           </Typography>
           <Box sx={{
             display: 'flex',
