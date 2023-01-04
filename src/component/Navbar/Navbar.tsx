@@ -80,7 +80,7 @@ export default function Navbar({ openNavbar }: Data) {
         <Main>
           <Routes>
             <Route path="/home" element={<EmptyTaskCard />} />
-            <Route path="/:title" element={<TaskCard/>}/>
+            <Route path="/:title" element={<><TaskCard /><CompletedTaskCard /></>}/>
             <Route path="/note" element={<Note />} />
           </Routes>
         </Main>
