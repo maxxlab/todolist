@@ -19,7 +19,12 @@ export default function Task({id, text, completed}: taskProps) {
     const handleClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
 
     };
-
+    const taskChecked = {
+        textDecoration:"line-through"
+    }
+    const taskUnckecked = {
+        textDecoration: "none"
+    }
     const dispatch = useDispatch();
     const user = useSelector((state: any) => state.user);
     const params = useParams();
@@ -32,7 +37,9 @@ export default function Task({id, text, completed}: taskProps) {
         }}>
             <Typography variant="h6" component="div">
                 <Checkbox checked={completed} onChange={() => dispatch(toggleTodoComplete({id}))} className="taskCheck"/>
-                <span>{text}</span>
+                <span style={
+                    completed? taskChecked:taskUnckecked
+                }>{text}</span>
             </Typography>
             <Box>
                 <Button>

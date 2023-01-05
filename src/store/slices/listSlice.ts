@@ -18,15 +18,19 @@ export const fetchList = createAsyncThunk(
     return data;
   }
 )
-
+function writeList(uid: string, title:string) {
+  const db = getDatabase();
+  set(ref(db, uid + "/" + title), {}); 
+}
 const listSlice = createSlice ({
   name: 'lists',
   initialState,
   reducers: {
       addList(state, action) {
-        state.lists.push({
-          title: action.payload
-        })
+        state.lists.push(
+          action.payload.title
+        )
+        writeList(action.payload.user.id, action.payload.title);
       }
   },
   extraReducers:{

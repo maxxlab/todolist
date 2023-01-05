@@ -5,6 +5,7 @@ import CreationModal from '../Modal/CreationModal';
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField } from '@mui/material';
 import { useAppDispatch } from "../../hooks/redux-hooks";
 import { addList } from '../../store/slices/listSlice';
+import { useSelector } from 'react-redux';
 
 const style = {
     position: 'absolute' as 'absolute',
@@ -29,11 +30,11 @@ export default function CreateNewNote() {
     const [title, changeTitle] = useState('')
 
     const dispatch = useAppDispatch();
-
+    const user = useSelector((state: any) => state.user)
     const handleChange = () => setOpen(!open);
     const createTasklist = () => {
         // alert(title);
-        dispatch(addList(title));
+        dispatch(addList({title, user}));
         handleChange();
     }
 

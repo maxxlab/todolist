@@ -33,6 +33,10 @@ export const fetchTodo = createAsyncThunk(
     const db = getDatabase();
     const snapshot = await get(ref(db, props.userID + "/" + props.title + '/todo/'));
     const data = snapshot.val();
+    console.log(data)
+    if (data === null){
+      return {};
+    }
     return data;
   }
 )
@@ -69,9 +73,9 @@ const todoSlice = createSlice({
   extraReducers:{
     [fetchTodo.fulfilled.toString()]: (state,action) => {
       state.todos = [];
-      const todo:object[] = Object.values(action.payload)
-      state.todos.push(...todo)
-      console.log(todo)
+        const todo:object[] = Object.values(action.payload)
+        state.todos.push(...todo)
+        console.log(todo)
     }
   }
 });
