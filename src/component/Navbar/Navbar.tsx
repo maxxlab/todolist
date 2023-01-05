@@ -11,11 +11,13 @@ import { Routes, Route } from 'react-router-dom';
 import TaskCard from '../TaskCard/TaskCard';
 import EmptyTaskCard from '../TaskCard/EmptyTaskCard';
 import CompletedTaskCard from '../TaskCard/CompleteTaskCards';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Note from '../Note/Note';
 import LoginPage from '../authPages/LoginPage';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { match } from 'assert';
+import { fetchList } from '../../store/slices/listSlice';
+import { useAppDispatch } from '../../hooks/redux-hooks';
 
 const drawerWidth: number = 240;
 
@@ -50,8 +52,12 @@ interface listProps {
 }
 
 export default function Navbar({ openNavbar }: Data) {
-
+  const dispatch = useAppDispatch()
+  const user  = useSelector((state:any)=> state.user)
   const lists = useSelector((state : any) => state.lists.lists);
+  useEffect(()=>{ 
+    dispatch(fetchList(user.id))
+  }, [dispatch, user.id])
   console.log(lists)
   return (
     <>
@@ -70,7 +76,7 @@ export default function Navbar({ openNavbar }: Data) {
           }}>
             {
               lists.map((list : listProps) => (
-                <ListItem title={list.title}></ListItem>
+                <ListItem title={list}></ListItem>
               ))
             }
             <Divider sx={{ my: 1 }} />

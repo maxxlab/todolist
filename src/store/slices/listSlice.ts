@@ -8,6 +8,17 @@ const initialState:{lists:object[]} = {
   lists: []
 };
 
+export const fetchList = createAsyncThunk(
+  "list/fetchList",
+  async (id:object) => {
+    const db = getDatabase();
+    const snapshot = await get(ref(db, id + "/"));
+    const data = snapshot.val();
+    console.log(data)
+    return data;
+  }
+)
+
 const listSlice = createSlice ({
   name: 'lists',
   initialState,
@@ -17,6 +28,15 @@ const listSlice = createSlice ({
           title: action.payload
         })
       }
+  },
+  extraReducers:{
+    [fetchList.fulfilled.toString()]: (state,action) => {
+      if (state.lists.length === 0){
+        const lists:any[] = Object.keys(action.payload)
+        console.log(lists)
+        state.lists.push(...lists)
+      }
+    }
   }
 })
 

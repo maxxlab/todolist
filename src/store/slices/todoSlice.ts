@@ -9,14 +9,18 @@ interface tasksProps {
   text: string,
   completed: boolean
 }
+interface fetchProps{
+  id:string,
+  title:string
+}
 
 const initialState:{todos:object[]} = {
   todos: []
 };
 
-function writeTask(uid: string, id: string, text: string, completed: boolean) {
+function writeTask(uid: string, id: string, text: string, completed: boolean, title:string) {
   const db = getDatabase();
-  set(ref(db, uid + '/todo/' + id), {
+  set(ref(db, uid + "/" + title + '/todo/' + id), {
     id: id,
     text: text,
     completed: completed
@@ -25,17 +29,17 @@ function writeTask(uid: string, id: string, text: string, completed: boolean) {
 
 export const fetchTodo = createAsyncThunk(
   "todos/fetchTodos",
-  async (id: string) => {
+  async (props:any) => {
     const db = getDatabase();
-    const snapshot = await get(ref(db, id + '/todo/'));
+    const snapshot = await get(ref(db, props.userID + "/" + props.title + '/todo/'));
     const data = snapshot.val();
     return data;
   }
 )
 
-function deleteTask(uid: string, id: string,){
+function deleteTask(uid: string, id: string, title: string){
   const db = getDatabase();
-  remove(ref(db, uid + '/todo/' + id));
+  remove(ref(db, uid + "/" + title +'/todo/' + id));
 }
 
 
@@ -50,19 +54,12 @@ const todoSlice = createSlice({
         text: action.payload.text,
         completed: false
       })
-      writeTask(action.payload.user.id, uid, action.payload.text, false);
-    },
-    readTasks(state, action) {
-      const db = getDatabase();
-      const starCountRef = ref(db, 'todo/');
-      onValue(starCountRef, (snapshot) => {
-        const data = snapshot.val();
-        state.todos.push(Object.values(data));
-      });
+      writeTask(action.payload.user.id, uid, action.payload.text, false, action.payload.title);
     },
     removeTodo(state, action) {
+      console.log(action)
       state.todos = state.todos.filter((todo : any) => todo.id !== action.payload.id);
-      deleteTask(action.payload.user.id, action.payload.id);
+      deleteTask(action.payload.user.id, action.payload.id, action.payload.title);
     },
     toggleTodoComplete (state, action) {
       const toggledTodo : any = state.todos.find((todo :any) => todo.id === action.payload.id);
@@ -71,14 +68,13 @@ const todoSlice = createSlice({
   },
   extraReducers:{
     [fetchTodo.fulfilled.toString()]: (state,action) => {
-      if (state.todos.length === 0){
-        const todo:object[] = Object.values(action.payload)
-        state.todos.push(...todo)
-        console.log(todo)
-      }
+      state.todos = [];
+      const todo:object[] = Object.values(action.payload)
+      state.todos.push(...todo)
+      console.log(todo)
     }
   }
 });
 
-export const {addTodo, readTasks, removeTodo, toggleTodoComplete} = todoSlice.actions;
+export const {addTodo, removeTodo, toggleTodoComplete} = todoSlice.actions;
 export default todoSlice.reducer;

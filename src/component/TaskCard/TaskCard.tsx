@@ -8,7 +8,7 @@ import Button from '@mui/material/Button';
 import { useEffect, useState } from 'react';
 import { getDatabase, ref, set, child, get, onValue, DataSnapshot, remove } from "firebase/database";
 import { useDispatch } from 'react-redux';
-import { addTodo, fetchTodo, readTasks } from '../../store/slices/todoSlice';
+import { addTodo, fetchTodo } from '../../store/slices/todoSlice';
 import { useAppDispatch } from "../../hooks/redux-hooks";
 import { TaskList } from '../Task/TaskList';
 import { useSelector } from 'react-redux';
@@ -27,18 +27,21 @@ export default function TaskCard() {
   const [tasks, setTasks] = useState<tasksProps[]>([]);
   const [text, setText] = useState('');
   const user = useSelector((state: any) => state.user);
+  const lists = useSelector((state:any)=>state.lists);
+  console.log(lists)
   const params = useParams();
   const dispatch = useAppDispatch();
-
+  const userID = user.id
+  const title = params.title
   useEffect(() => {
-    dispatch(fetchTodo(user.id));
-  }, [dispatch, user.id])
+    dispatch(fetchTodo({userID, title}));/////////////
+  }, [dispatch, title, userID])
 
   const addTask = () => {
-    dispatch(addTodo({ text, user }));
+    dispatch(addTodo({ text, user, title }));
     setText('');
   }
-  return (
+  return ( 
     <div style={{
       width: "95%",
       minWidth: 50,
