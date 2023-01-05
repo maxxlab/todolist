@@ -38,9 +38,6 @@ export default function TaskCard() {
     dispatch(addTodo({ text, user }));
     setText('');
   }
-
-
-
   return (
     <div style={{
       width: "95%",
