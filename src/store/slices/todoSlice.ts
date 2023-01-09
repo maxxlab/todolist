@@ -18,9 +18,9 @@ const initialState:{todos:object[]} = {
   todos: []
 };
 
-function writeTask(uid: string, id: string, text: string, completed: boolean, title:string) {
+function writeTask(uid: string, id: string, text: string, completed: boolean, titleID:string) {
   const db = getDatabase();
-  set(ref(db, uid + "/" + title + '/todo/' + id), {
+  set(ref(db, uid + "/" + titleID + '/todo/' + id), {
     id: id,
     text: text,
     completed: completed
@@ -29,21 +29,18 @@ function writeTask(uid: string, id: string, text: string, completed: boolean, ti
 
 export const fetchTodo = createAsyncThunk(
   "todos/fetchTodos",
-  async (props:any) => {
+  async (props:{userID:string, titleID:string}) => {
     const db = getDatabase();
-    const snapshot = await get(ref(db, props.userID + "/" + props.title + '/todo/'));
+    const snapshot = await get(ref(db, props.userID + "/" + props.titleID + '/todo/'));
     const data = snapshot.val();
     console.log(data)
-    if (data === null){
-      return {};
-    }
-    return data;
+    return data||{};
   }
 )
 
-function deleteTask(uid: string, id: string, title: string){
+function deleteTask(uid: string, id: string, titleID: string){
   const db = getDatabase();
-  remove(ref(db, uid + "/" + title +'/todo/' + id));
+  remove(ref(db, uid + "/" + titleID +'/todo/' + id));
 }
 
 
@@ -58,12 +55,13 @@ const todoSlice = createSlice({
         text: action.payload.text,
         completed: false
       })
-      writeTask(action.payload.user.id, uid, action.payload.text, false, action.payload.title);
+      console.log(action.payload.user.id + "/" + action.payload.titleID + '/todo/' + uid);
+      writeTask(action.payload.user.id, uid, action.payload.text, false, action.payload.titleID);
     },
     removeTodo(state, action) {
       console.log(action)
       state.todos = state.todos.filter((todo : any) => todo.id !== action.payload.id);
-      deleteTask(action.payload.user.id, action.payload.id, action.payload.title);
+      deleteTask(action.payload.user.id, action.payload.id, action.payload.titleID);
     },
     toggleTodoComplete (state, action) {
       const toggledTodo : any = state.todos.find((todo :any) => todo.id === action.payload.id);

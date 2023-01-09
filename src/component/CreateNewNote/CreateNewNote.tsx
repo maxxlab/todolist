@@ -31,10 +31,11 @@ export default function CreateNewNote() {
 
     const dispatch = useAppDispatch();
     const user = useSelector((state: any) => state.user)
+    const lists = useSelector((state:any) => state.lists)
     const handleChange = () => setOpen(!open);
     const createTasklist = () => {
         // alert(title);
-        dispatch(addList({title, user}));
+        dispatch(addList({title, user, lists}));
         handleChange();
     }
 

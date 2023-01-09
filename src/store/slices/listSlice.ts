@@ -18,25 +18,30 @@ export const fetchList = createAsyncThunk(
     return data;
   }
 )
-function writeList(uid: string, title:string) {
+function writeList(uid: string, titleID: string, title:string) {
   const db = getDatabase();
-  set(ref(db, uid + "/" + title), {}); 
+  set(ref(db, uid + "/" + titleID), {
+    id:titleID,
+    title:title,
+  }); 
 }
 const listSlice = createSlice ({
   name: 'lists',
   initialState,
   reducers: {
       addList(state, action) {
-        state.lists.push(
-          action.payload.title
-        )
-        writeList(action.payload.user.id, action.payload.title);
+        const titleID = guid();
+        state.lists.push({
+          id:titleID,
+          title:action.payload.title
+        })
+        writeList(action.payload.user.id, titleID, action.payload.title);
       }
   },
   extraReducers:{
     [fetchList.fulfilled.toString()]: (state,action) => {
       if (state.lists.length === 0){
-        const lists:any[] = Object.keys(action.payload)
+        const lists:object[] = Object.values(action.payload)
         console.log(lists)
         state.lists.push(...lists)
       }

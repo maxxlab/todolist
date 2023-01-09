@@ -14,7 +14,10 @@ interface taskProps {
     text: string
     completed: boolean
 }
-
+interface listProps {
+    id: string,
+    title:string
+  }
 export default function Task({id, text, completed}: taskProps) {
     const handleClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
 
@@ -22,13 +25,19 @@ export default function Task({id, text, completed}: taskProps) {
     const taskChecked = {
         textDecoration:"line-through"
     }
-    const taskUnckecked = {
+    const taskUnchecked = {
         textDecoration: "none"
     }
     const dispatch = useDispatch();
     const user = useSelector((state: any) => state.user);
+    const lists = useSelector((state:any)=>state.lists.lists);
     const params = useParams();
-    const title = params.title;
+    let titleID:string = "";
+    lists.forEach((list:listProps) => {
+        if(list.title === params.title){
+          titleID = list.id
+        }
+      })
     return (
         <Box sx={{
             display: 'flex',
@@ -38,14 +47,14 @@ export default function Task({id, text, completed}: taskProps) {
             <Typography variant="h6" component="div">
                 <Checkbox checked={completed} onChange={() => dispatch(toggleTodoComplete({id}))} className="taskCheck"/>
                 <span style={
-                    completed? taskChecked:taskUnckecked
+                    completed? taskChecked:taskUnchecked
                 }>{text}</span>
             </Typography>
             <Box>
                 <Button>
                     <StarBorderIcon color="primary"/>
                 </Button>
-                <Button onClick={() => dispatch(removeTodo({user, id, title}))}>
+                <Button onClick={() => dispatch(removeTodo({user, id, titleID}))}>
                     <DeleteIcon color="primary"/>
                 </Button>
             </Box>

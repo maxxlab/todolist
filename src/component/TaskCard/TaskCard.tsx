@@ -19,7 +19,10 @@ interface tasksProps {
   text: string,
   completed: boolean
 }
-
+interface listProps {
+  id: string,
+  title:string
+}
 
 
 export default function TaskCard() {
@@ -27,18 +30,23 @@ export default function TaskCard() {
   const [tasks, setTasks] = useState<tasksProps[]>([]);
   const [text, setText] = useState('');
   const user = useSelector((state: any) => state.user);
-  const lists = useSelector((state:any)=>state.lists);
+  const lists = useSelector((state:any)=>state.lists.lists);
   console.log(lists)
   const params = useParams();
   const dispatch = useAppDispatch();
-  const userID = user.id
-  const title = params.title
+  let titleID:string = "";
+  lists.forEach((list:listProps) => {
+    if(list.title === params.title){
+      titleID = list.id
+    }
+  })
+
   useEffect(() => {
-    dispatch(fetchTodo({userID, title}));/////////////
-  }, [dispatch, title, userID])
+    dispatch(fetchTodo({userID: user.id, titleID: titleID}));
+  }, [dispatch, titleID, user.id])
 
   const addTask = () => {
-    dispatch(addTodo({ text, user, title }));
+    dispatch(addTodo({ text, user, titleID })); 
     setText('');
   }
   return ( 

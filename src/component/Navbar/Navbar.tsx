@@ -76,7 +76,7 @@ export default function Navbar({ openNavbar }: Data) {
           }}>
             {
               lists.map((list : listProps) => (
-                <ListItem title={list}></ListItem>
+                <ListItem title={list.title}></ListItem>
               ))
             }
             <Divider sx={{ my: 1 }} />
