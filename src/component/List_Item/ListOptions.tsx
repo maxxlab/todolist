@@ -3,43 +3,28 @@ import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import { useAppDispatch } from '../../hooks/redux-hooks';
+import { removeList } from '../../store/slices/listSlice';
 
-const options1 = [
-  'Settings',
-  'About'
-];
-const options2 = [
+const options = [
   'Delete',
   'Rename'
 ];
 
 const ITEM_HEIGHT = 48;
 
-interface optionData{
-  option:string;
-}
-export default function LongMenu({option}:optionData) {
-  let options;
-  switch(option){
-    case "header":
-      options = options1;
-      break;
-    case "task":
-      options = options2;
-      break;
-    default:
-      options = [1,2,3];//щоб масив не був пустий(такий вивід - ознака помилки)
-      break
-  }
+export default function LongMenu(props: any) {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
-    
+
     setAnchorEl(null);
   };
+
+  const dispatch = useAppDispatch();
 
   return (
     <div>
@@ -69,20 +54,15 @@ export default function LongMenu({option}:optionData) {
           },
         }}
       >
-
-        {options.map((option) => (
-          <MenuItem key={option} onClick={() => {
-            if(option === 'Delete') {
-
-            }
-            setAnchorEl(null);
-          }}>
-            {option}
-          </MenuItem>
-        ))}
+        <MenuItem onClick={() => {
+          dispatch(removeList({uid: props.uid, id: props.id}));
+        }}>
+          {options[0]}
+        </MenuItem>
+        <MenuItem onClick={handleClose}>
+          {options[1]}
+        </MenuItem>
       </Menu>
     </div>
   );
 }
-
-

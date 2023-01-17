@@ -1,8 +1,14 @@
+import { AlertTitleClassKey } from "@mui/material";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { getDatabase, ref, set, onValue, DataSnapshot, remove, get } from "firebase/database";
 import { useSelector } from "react-redux";
 import { start } from "repl";
 import guid from '../../tools/tools';
+
+interface listProps {
+  id: string,
+  title: string
+}
 
 const initialState:{lists:object[]} = {
   lists: []
@@ -25,6 +31,12 @@ function writeList(uid: string, titleID: string, title:string) {
     title:title,
   }); 
 }
+
+function deleteList(uid: string, id: string){
+  const db = getDatabase();
+  remove(ref(db, uid + "/" + id));
+}
+
 const listSlice = createSlice ({
   name: 'lists',
   initialState,
@@ -36,6 +48,11 @@ const listSlice = createSlice ({
           title:action.payload.title
         })
         writeList(action.payload.user.id, titleID, action.payload.title);
+      },
+      removeList(state, action) {
+        console.log(action);
+        state.lists = state.lists.filter((list : any) => list.id !== action.payload.id);
+        deleteList(action.payload.uid, action.payload.id);
       }
   },
   extraReducers:{
@@ -49,5 +66,5 @@ const listSlice = createSlice ({
   }
 })
 
-export const {addList} = listSlice.actions;
+export const {addList, removeList} = listSlice.actions;
 export default listSlice.reducer;
