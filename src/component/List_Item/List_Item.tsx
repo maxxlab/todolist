@@ -15,18 +15,10 @@ interface listProps {
   }
 
 export default function ListItem(props: any) {
-    const [open, setOpen] = React.useState(true);
-    const user = useSelector((state: any) => state.user);
     const lists = useSelector((state:any)=>state.lists.lists);
-    const params = useParams();
-
-    const handleClick = () => {
-        setOpen(!open);
-    };
-
     let titleID:string = "";
     lists.forEach((list:listProps) => {
-        if(list.title === params.title){
+        if(list.title === props.title){
           titleID = list.id
         }
       })
@@ -36,7 +28,7 @@ export default function ListItem(props: any) {
                 <ListItemButton>
                     <ListItemText primary={props.title} />
                     {/* <Menu option={'task'} /> */}
-                    <ListOptions uid={user.id} id={titleID} />
+                    <ListOptions id={titleID} />
                 </ListItemButton>
             </Link>
         </React.Fragment>

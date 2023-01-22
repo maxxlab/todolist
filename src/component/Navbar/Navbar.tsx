@@ -85,7 +85,7 @@ export default function Navbar({ openNavbar }: Data) {
         </Drawer>
         <Main>
           <Routes>
-            <Route path="/home" element={<EmptyTaskCard />} />
+            <Route path="/" element={<div></div>} />
             <Route path="/:title" element={<TaskCard />}/>
             <Route path="/note" element={<Note />} />
           </Routes>

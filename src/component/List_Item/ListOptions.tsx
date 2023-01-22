@@ -5,6 +5,8 @@ import MenuItem from '@mui/material/MenuItem';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { useAppDispatch } from '../../hooks/redux-hooks';
 import { removeList } from '../../store/slices/listSlice';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 const options = [
   'Delete',
@@ -16,6 +18,7 @@ const ITEM_HEIGHT = 48;
 export default function LongMenu(props: any) {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
+  const user = useSelector((state:any) => state.user);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
@@ -54,11 +57,13 @@ export default function LongMenu(props: any) {
           },
         }}
       >
-        <MenuItem onClick={() => {
-          dispatch(removeList({uid: props.uid, id: props.id}));
-        }}>
-          {options[0]}
-        </MenuItem>
+        <Link to={"/"}>
+          <MenuItem onClick={() => {
+            dispatch(removeList({uid: user.id, id: props.id}));
+          }}>
+            {options[0]}
+          </MenuItem>
+        </Link>
         <MenuItem onClick={handleClose}>
           {options[1]}
         </MenuItem>
