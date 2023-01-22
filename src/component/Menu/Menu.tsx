@@ -37,7 +37,6 @@ export default function LongMenu({option}:optionData) {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
-    
     setAnchorEl(null);
   };
 
@@ -69,14 +68,8 @@ export default function LongMenu({option}:optionData) {
           },
         }}
       >
-
         {options.map((option) => (
-          <MenuItem key={option} onClick={() => {
-            if(option === 'Delete') {
-
-            }
-            setAnchorEl(null);
-          }}>
+          <MenuItem key={option} onClick={handleClose}>
             {option}
           </MenuItem>
         ))}
