@@ -1,6 +1,6 @@
 import { AlertTitleClassKey } from "@mui/material";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { getDatabase, ref, set, onValue, DataSnapshot, remove, get } from "firebase/database";
+import { getDatabase, ref, set, onValue, DataSnapshot, remove, get, update } from "firebase/database";
 import { useSelector } from "react-redux";
 import { start } from "repl";
 import guid from '../../tools/tools';
@@ -37,6 +37,11 @@ function deleteList(uid: string, id: string){
   remove(ref(db, uid + "/" + id));
 }
 
+function changeTitle(uid:string, id:string, title:string) {
+  const db = getDatabase();
+  update(ref(db, uid + "/" + id), {title:title})
+}
+
 const listSlice = createSlice ({
   name: 'lists',
   initialState,
@@ -50,9 +55,17 @@ const listSlice = createSlice ({
         writeList(action.payload.user.id, titleID, action.payload.title);
       },
       removeList(state, action) {
-        console.log(action);
         state.lists = state.lists.filter((list : any) => list.id !== action.payload.id);
         deleteList(action.payload.uid, action.payload.id);
+      },
+      changeListTitle(state, action){
+        state.lists = state.lists.map((list:any)=>{
+          if(list.id === action.payload.id){
+            list.title = action.payload.title
+          }
+          return list;
+        })
+        changeTitle(action.payload.uid,action.payload.id,action.payload.title)
       }
   },
   extraReducers:{
@@ -66,5 +79,5 @@ const listSlice = createSlice ({
   }
 })
 
-export const {addList, removeList} = listSlice.actions;
+export const {addList, removeList, changeListTitle} = listSlice.actions;
 export default listSlice.reducer;

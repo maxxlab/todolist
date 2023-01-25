@@ -18,10 +18,10 @@ export default function ListItem(props: any) {
     const lists = useSelector((state:any)=>state.lists.lists);
     let titleID:string = "";
     lists.forEach((list:listProps) => {
-        if(list.title === props.title){
-          titleID = list.id
-        }
-      })
+      if(list.title === props.title){
+        titleID = list.id
+      }
+    })
     return (
         <React.Fragment key={props.title}>
             <Link to={"/" + props.title}>

@@ -1,8 +1,7 @@
 import {useState} from 'react';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
-import CreationModal from '../Modal/CreationModal';
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField } from '@mui/material';
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@mui/material';
 import { useAppDispatch } from "../../hooks/redux-hooks";
 import { addList } from '../../store/slices/listSlice';
 import { useSelector } from 'react-redux';

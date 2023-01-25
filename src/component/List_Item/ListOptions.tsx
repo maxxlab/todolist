@@ -7,6 +7,9 @@ import { useAppDispatch } from '../../hooks/redux-hooks';
 import { removeList } from '../../store/slices/listSlice';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import ListTitleChangeModal from "./ListTitleChangeModal"
+import { useState } from 'react';
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@mui/material';
 
 const options = [
   'Delete',
@@ -28,7 +31,6 @@ export default function LongMenu(props: any) {
   };
 
   const dispatch = useAppDispatch();
-
   return (
     <div>
       <IconButton
@@ -64,9 +66,9 @@ export default function LongMenu(props: any) {
             {options[0]}
           </MenuItem>
         </Link>
-        <MenuItem onClick={handleClose}>
-          {options[1]}
-        </MenuItem>
+        <ListTitleChangeModal 
+          option = {options[1]}
+          id = {props.id}/>
       </Menu>
     </div>
   );
