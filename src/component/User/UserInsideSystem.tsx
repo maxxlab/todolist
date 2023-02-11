@@ -8,10 +8,9 @@ import { Link } from 'react-router-dom';
 import LoginPage from '../authPages/LoginPage';
 import { removeUser } from '../../store/slices/userSlice';
 import { useAppDispatch } from '../../hooks/redux-hooks';
-
+import HelpModal from '../Header/HelpModal';
 
 const option = [
-  'Settings',
   'Help',
   'Sign out',
 ];
@@ -60,9 +59,7 @@ export default function LongMenu() {
           },
         }}
       >
-        <MenuItem onClick={handleClose}>
-          {option[0]}
-        </MenuItem>
+        <HelpModal/>
         <MenuItem onClick={handleClose}>
           {option[1]}
         </MenuItem>

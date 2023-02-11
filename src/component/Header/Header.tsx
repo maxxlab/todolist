@@ -25,7 +25,6 @@ export default function Header({StateChanger}:Data) {
               display: "flex"
             }}>
               <UserInsideSystem/>
-              <Menu option = {"header"}/>
             </Box>
           </Toolbar>
         </AppBar>

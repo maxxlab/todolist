@@ -8,8 +8,6 @@ import { removeList } from '../../store/slices/listSlice';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import ListTitleChangeModal from "./ListTitleChangeModal"
-import { useState } from 'react';
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@mui/material';
 
 const options = [
   'Delete',

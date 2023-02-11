@@ -6,24 +6,6 @@ import { useAppDispatch } from "../../hooks/redux-hooks";
 import { addList } from '../../store/slices/listSlice';
 import { useSelector } from 'react-redux';
 
-const style = {
-    position: 'absolute' as 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 400,
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
-    boxShadow: 24,
-    p: 4,
-    display: 'flex',
-    justifyContent: 'center',
-    flexDirection: 'column',
-    alignItems: 'center'
-};
-
-const ariaLabel = { 'aria-label': 'description' };
-
 export default function CreateNewNote() {
     const [open, setOpen] = useState(false);
     const [title, changeTitle] = useState('')
