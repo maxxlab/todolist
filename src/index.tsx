@@ -6,8 +6,9 @@ import App from './component/App/App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import Autorization from './component/authPages/Autorization';
-import { store } from './store';
+import { persistor, store } from './store';
 import './firebase';
+import { PersistGate } from 'redux-persist/integration/react';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -16,7 +17,9 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Provider store={store}>
-        <Autorization />
+        <PersistGate loading={null} persistor={persistor}>
+          <Autorization />
+        </PersistGate>
       </Provider>
     </BrowserRouter>
   </React.StrictMode>

@@ -66,17 +66,12 @@ export default function TaskCard() {
             justifyContent: 'space-between',
             flexDirection: "column"
           }}>
-
             <Box>
               <TextField id="standard-basic" value={text} onChange={(e) => setText(e.target.value)} variant="standard" sx={{ width: '30rem', marginRight: '2rem' }} />
               <Button variant="contained" onClick={addTask}>Add</Button>
             </Box>
-
             <TaskList />
-
-
           </Box>
-
         </CardContent>
       </Card>
     </div>

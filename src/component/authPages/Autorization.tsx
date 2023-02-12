@@ -13,7 +13,6 @@ function Autorization() {
   return isAuth ? (
     <>
       <App />
-      <button onClick={() => {dispatch(removeUser())}}></button>
     </>
   ) : (
     <>

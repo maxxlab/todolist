@@ -10,10 +10,7 @@ import { removeUser } from '../../store/slices/userSlice';
 import { useAppDispatch } from '../../hooks/redux-hooks';
 import HelpModal from '../Header/HelpModal';
 
-const option = [
-  'Help',
-  'Sign out',
-];
+const SIGN_OUT = "Sign out";
 
 const ITEM_HEIGHT = 48;
 
@@ -60,14 +57,11 @@ export default function LongMenu() {
         }}
       >
         <HelpModal/>
-        <MenuItem onClick={handleClose}>
-          {option[1]}
-        </MenuItem>
         <Link to="/">
           <MenuItem onClick={() => setTimeout(() => {
             dispatch(removeUser());
           }, 1000)}>
-            {option[2]}
+            {SIGN_OUT}
           </MenuItem>
         </Link>
       </Menu>
