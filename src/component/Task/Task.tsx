@@ -19,9 +19,7 @@ interface listProps {
     title:string
   }
 export default function Task({id, text, completed}: taskProps) {
-    const handleClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
 
-    };
     const taskChecked = {
         textDecoration:"line-through"
     }
@@ -45,7 +43,7 @@ export default function Task({id, text, completed}: taskProps) {
             justifyContent: "space-between"
         }}>
             <Typography variant="h6" component="div">
-                <Checkbox checked={completed} onChange={() => dispatch(toggleTodoComplete({id}))} className="taskCheck"/>
+                <Checkbox checked={completed} onChange={() => dispatch(toggleTodoComplete({user, titleID, id}))} className="taskCheck"/>
                 <span style={
                     completed? taskChecked:taskUnchecked
                 }>{text}</span>

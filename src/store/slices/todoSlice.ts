@@ -1,18 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { getDatabase, ref, set, onValue, DataSnapshot, remove, get } from "firebase/database";
-import { useSelector } from "react-redux";
-import { start } from "repl";
+import { getDatabase, ref, set, remove, get, update } from "firebase/database";
 import guid from '../../tools/tools';
 
-interface tasksProps {
-  id: string,
-  text: string,
-  completed: boolean
-}
-interface fetchProps{
-  id:string,
-  title:string
-}
 
 const initialState:{todos:object[]} = {
   todos: []
@@ -43,6 +32,12 @@ function deleteTask(uid: string, id: string, titleID: string){
   remove(ref(db, uid + "/" + titleID +'/todo/' + id));
 }
 
+function completeChanger(uid: string, titleID:string, id: string, completedState:boolean){
+  const db = getDatabase();
+  update(ref(db, uid + "/" + titleID + "/todo/" + id), {completed: completedState})
+
+}
+
 
 const todoSlice = createSlice({
   name: 'todos',
@@ -66,6 +61,8 @@ const todoSlice = createSlice({
     toggleTodoComplete (state, action) {
       const toggledTodo : any = state.todos.find((todo :any) => todo.id === action.payload.id);
       toggledTodo.completed = !toggledTodo.completed;
+      completeChanger(action.payload.user.id, action.payload.titleID, action.payload.id, toggledTodo.completed);
+
     }
   },
   extraReducers:{
