@@ -2,23 +2,16 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import Task from "../Task/Task";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { useEffect, useState } from 'react';
-import { getDatabase, ref, set, child, get, onValue, DataSnapshot, remove } from "firebase/database";
-import { useDispatch } from 'react-redux';
+
 import { addTodo, fetchTodo } from '../../store/slices/todoSlice';
 import { useAppDispatch } from "../../hooks/redux-hooks";
 import { TaskList } from '../Task/TaskList';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-interface tasksProps {
-  id: string,
-  text: string,
-  completed: boolean
-}
 interface listProps {
   id: string,
   title:string
@@ -27,7 +20,6 @@ interface listProps {
 
 export default function TaskCard() {
 
-  const [tasks, setTasks] = useState<tasksProps[]>([]);
   const [text, setText] = useState('');
   const user = useSelector((state: any) => state.user);
   const lists = useSelector((state:any)=>state.lists.lists);

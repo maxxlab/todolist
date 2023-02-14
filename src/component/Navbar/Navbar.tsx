@@ -9,13 +9,8 @@ import CreateNewNote from '../CreateNewNote/CreateNewNote';
 
 import { Routes, Route } from 'react-router-dom';
 import TaskCard from '../TaskCard/TaskCard';
-import EmptyTaskCard from '../TaskCard/EmptyTaskCard';
-import CompletedTaskCard from '../TaskCard/CompleteTaskCards';
-import { useDispatch, useSelector } from 'react-redux';
-import Note from '../Note/Note';
-import LoginPage from '../authPages/LoginPage';
-import { useEffect, useState } from 'react';
-import { match } from 'assert';
+import {  useSelector } from 'react-redux';
+import { useEffect} from 'react';
 import { fetchList } from '../../store/slices/listSlice';
 import { useAppDispatch } from '../../hooks/redux-hooks';
 
@@ -58,7 +53,6 @@ export default function Navbar({ openNavbar }: Data) {
   useEffect(()=>{ 
     dispatch(fetchList(user.id))
   }, [dispatch, user.id])
-  console.log(lists)
   return (
     <>
       <Box sx={{ display: 'flex' }}>
@@ -79,7 +73,10 @@ export default function Navbar({ openNavbar }: Data) {
                 <ListItem title={list.title}></ListItem>
               ))
             }
+            {
             <Divider sx={{ my: 1 }} />
+
+            }
             <CreateNewNote></CreateNewNote>
           </List>
         </Drawer>
@@ -87,7 +84,6 @@ export default function Navbar({ openNavbar }: Data) {
           <Routes>
             <Route path="/" element={<div></div>} />
             <Route path="/:title" element={<TaskCard />}/>
-            <Route path="/note" element={<Note />} />
           </Routes>
         </Main>
 

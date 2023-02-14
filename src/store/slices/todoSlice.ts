@@ -7,12 +7,13 @@ const initialState:{todos:object[]} = {
   todos: []
 };
 
-function writeTask(uid: string, id: string, text: string, completed: boolean, titleID:string) {
+function writeTask(uid: string, id: string, text: string, completed: boolean, titleID:string, isShine:boolean) {
   const db = getDatabase();
   set(ref(db, uid + "/" + titleID + '/todo/' + id), {
     id: id,
     text: text,
-    completed: completed
+    completed: completed,
+    isShine: isShine
   });
 }
 
@@ -35,7 +36,11 @@ function deleteTask(uid: string, id: string, titleID: string){
 function completeChanger(uid: string, titleID:string, id: string, completedState:boolean){
   const db = getDatabase();
   update(ref(db, uid + "/" + titleID + "/todo/" + id), {completed: completedState})
+}
 
+function changeStarShine(uid: string, titleID:string, id: string, isShine:boolean){
+  const db = getDatabase();
+  update(ref(db, uid + "/" + titleID + "/todo/" + id), {isShine: isShine})
 }
 
 
@@ -48,10 +53,11 @@ const todoSlice = createSlice({
       state.todos.push({
         id: uid,
         text: action.payload.text,
-        completed: false
+        completed: false,
+        isShine:false
       })
       console.log(action.payload.user.id + "/" + action.payload.titleID + '/todo/' + uid);
-      writeTask(action.payload.user.id, uid, action.payload.text, false, action.payload.titleID);
+      writeTask(action.payload.user.id, uid, action.payload.text, false, action.payload.titleID, false);
     },
     removeTodo(state, action) {
       console.log(action)
@@ -62,7 +68,11 @@ const todoSlice = createSlice({
       const toggledTodo : any = state.todos.find((todo :any) => todo.id === action.payload.id);
       toggledTodo.completed = !toggledTodo.completed;
       completeChanger(action.payload.user.id, action.payload.titleID, action.payload.id, toggledTodo.completed);
-
+    },
+    toggleTodoIsStarShine(state, action){
+      const toggledTodo : any = state.todos.find((todo :any) => todo.id === action.payload.id);
+      toggledTodo.isShine = !toggledTodo.isShine;
+      changeStarShine(action.payload.user.id, action.payload.titleID, action.payload.id, toggledTodo.isShine);
     }
   },
   extraReducers:{
@@ -75,5 +85,5 @@ const todoSlice = createSlice({
   }
 });
 
-export const {addTodo, removeTodo, toggleTodoComplete} = todoSlice.actions;
+export const {addTodo, removeTodo, toggleTodoComplete, toggleTodoIsStarShine} = todoSlice.actions;
 export default todoSlice.reducer;

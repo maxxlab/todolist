@@ -2,23 +2,25 @@ import Typography from '@mui/material/Typography';
 import Checkbox from '@mui/material/Checkbox';
 import {Button} from '@mui/material';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
+import StarIcon from '@mui/icons-material/Star';
 import Box from '@mui/material/Box';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useDispatch, useSelector } from 'react-redux';
-import {removeTodo, toggleTodoComplete} from '../../store/slices/todoSlice';
+import {removeTodo, toggleTodoComplete, toggleTodoIsStarShine} from '../../store/slices/todoSlice';
 import './taskStyle.css';
 import { useParams } from 'react-router-dom';
 
 interface taskProps {
     id: string;
     text: string
-    completed: boolean
+    completed: boolean,
+    isShine: boolean
 }
 interface listProps {
     id: string,
     title:string
   }
-export default function Task({id, text, completed}: taskProps) {
+export default function Task({id, text, completed, isShine}: taskProps) {
 
     const taskChecked = {
         textDecoration:"line-through"
@@ -36,6 +38,7 @@ export default function Task({id, text, completed}: taskProps) {
           titleID = list.id
         }
       })
+
     return (
         <Box sx={{
             display: 'flex',
@@ -49,8 +52,8 @@ export default function Task({id, text, completed}: taskProps) {
                 }>{text}</span>
             </Typography>
             <Box>
-                <Button>
-                    <StarBorderIcon color="primary"/>
+                <Button onClick={() => dispatch(toggleTodoIsStarShine({user, titleID, id}))}>
+                    {isShine? <StarIcon/>:<StarBorderIcon color="primary"/>}
                 </Button>
                 <Button onClick={() => dispatch(removeTodo({user, id, titleID}))}>
                     <DeleteIcon color="primary"/>
