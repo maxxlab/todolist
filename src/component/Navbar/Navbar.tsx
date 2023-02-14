@@ -6,14 +6,12 @@ import Main from '../Main/Main';
 import ListItem from '../List_Item/List_Item';
 import Divider from '@mui/material/Divider';
 import CreateNewNote from '../CreateNewNote/CreateNewNote';
-
 import { Routes, Route } from 'react-router-dom';
 import TaskCard from '../TaskCard/TaskCard';
 import {  useSelector } from 'react-redux';
 import { useEffect} from 'react';
 import { fetchList } from '../../store/slices/listSlice';
 import { useAppDispatch } from '../../hooks/redux-hooks';
-
 const drawerWidth: number = 240;
 
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
@@ -55,7 +53,10 @@ export default function Navbar({ openNavbar }: Data) {
   }, [dispatch, user.id])
   return (
     <>
-      <Box sx={{ display: 'flex' }}>
+      <Box sx={{
+        display: 'flex',
+        height:`calc(100% - 48px)`,
+      }}>
         <Drawer variant="permanent" open={openNavbar}>
           <Toolbar
             sx={{
