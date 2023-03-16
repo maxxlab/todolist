@@ -59,7 +59,6 @@ export default function Task({id, text, completed, isShine}: taskProps) {
                     <DeleteIcon color="primary"/>
                 </Button>
             </Box>
-
         </Box>
     );
 }

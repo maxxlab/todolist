@@ -15,7 +15,7 @@ export default function ListTitleChangeModal( {option, id}:Data ){
     const handleChange = () => setOpen(!open);
     const [title, changeTitle] = useState('');
     const dispatch = useAppDispatch();
-    const changeListTitleModal = () => {
+    const changeListTitleModal = (e:any) => {
         dispatch(changeListTitle({uid:user.id, id:id, title:title}))
         handleChange();
     }
@@ -40,9 +40,11 @@ export default function ListTitleChangeModal( {option, id}:Data ){
                                 display:'flex', 
                                 alignItems:'center'
                             }} 
-                            id="changeListTitle" 
                             variant="outlined"
-                            onChange={(e)=>changeTitle(e.target.value)}
+                            onChange={(e)=>{
+                                changeTitle(e.target.value);
+                        }
+                        }
                         />
                     </DialogContent>
                     <DialogActions>
